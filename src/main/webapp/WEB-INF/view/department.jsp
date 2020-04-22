@@ -13,7 +13,7 @@
 <jsp:include page="menu.jsp"></jsp:include>
 
 <span style="color:red"><p><strong>${inputFormatException}</strong></p></span>
-<sec:authorize access="hasRole('ADMIN')">
+<%--<sec:authorize access="hasRole(T(com.dms.demo.domain.Role).ADMIN.toString())">--%>
 <div>
 
     <p class="font-weight-bold">Create department</p>
@@ -32,7 +32,7 @@
 <%--        <button type="submit">Создать</button>--%>
 <%--    </form>--%>
 </div>
-</sec:authorize>
+<%--</sec:authorize>--%>
 <div>
     <p class="font-weight-bold" style="width: 200px;">Department list</p>
 </div>
@@ -49,8 +49,8 @@
         <tr>
             <td><p><a href="/department/enterTheDepartment/${department.idDepartment}/">${department.departmentName}</a><p></td>
             <td><p><c:out value="${department.idDepartment}"></c:out><p></td>
-            <sec:authorize access="hasRole('ADMIN')">
-                <td><p><a href="/department/removeDepartment?idDepartment=${department.idDepartment}">Удаление отдела</a><p></td>
+<%--            <sec:authorize access="hasRole(T(com.dms.demo.domain.Role).ADMIN.toString())">--%>
+<%--                <td><p><a href="/department/removeDepartment?idDepartment=${department.idDepartment}">Удаление отдела</a><p></td>--%>
                 <td><form action="/department/removeDepartment?idDepartment=${department.idDepartment}" method="post" accept-charset="utf-8">
                     <button class="btn btn-primary" type="submit">Remove</button>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -71,7 +71,7 @@
                 <button type="submit" class="btn btn-primary mb-0.8">Edit</button>
                         </div>
                 </form></td>
-            </sec:authorize>
+<%--            </sec:authorize>--%>
         </tr>
     </c:forEach>
     </tbody>

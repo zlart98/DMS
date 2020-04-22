@@ -21,7 +21,7 @@
 <span style="color:red"><p><strong>${inputFormatException}</strong></p></span>
 
 <div>
-    <sec:authorize access="hasRole('ADMIN')">
+<%--    <sec:authorize access="hasRole('ADMIN')">--%>
     <div>
         <p><strong>Создание работника</strong></p>
     </div>
@@ -45,7 +45,7 @@
             <p><button type="submit" class="btn btn-primary">Create</button></p>
         </div>
     </form>
-    </sec:authorize>
+<%--    </sec:authorize>--%>
 </div>
 <div>
     <table class="table table-striped">
@@ -61,7 +61,7 @@
                 <td>${worker.position}</td>
                 <td>${worker.workposition}</td>
                 <td>${worker.departmentByIdDepartment.idDepartment}</td>
-                <sec:authorize access="hasRole('ADMIN')">
+<%--                <sec:authorize access="hasRole('ADMIN')">--%>
                     <td><form action="/worker/removeWorker?idWorker=${worker.idWorker}" method="post" accept-charset="utf-8">
                         <button class="btn btn-primary" type="submit">Remove</button>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -104,7 +104,7 @@
                             <p><button type="submit" class="btn btn-primary">Edit</button></p>
                         </div>
                     </form></td>
-                </sec:authorize>
+<%--                </sec:authorize>--%>
             </tr>
         </c:forEach>
     </table>
