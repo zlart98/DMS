@@ -28,13 +28,13 @@
                 <td>${worker.name}</td>
                 <td>${worker.position}</td>
                 <td>${worker.workposition}</td>
-<%--                <sec:authorize access="hasRole('ADMIN')">--%>
+                <sec:authorize access="hasRole('ADMIN')">
 <%--                    <td><p><a href="removeWorkerFromDepartment?idWorker=${worker.idWorker}">Удалить работника</a><p></td>--%>
                     <td><form action="removeWorkerFromDepartment?idWorker=${worker.idWorker}" method="post" accept-charset="utf-8">
                         <button class="btn btn-primary" type="submit">Remove</button>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     </form></td>
-<%--                </sec:authorize>--%>
+                </sec:authorize>
             </tr>
         </c:forEach>
         </tbody>
@@ -52,13 +52,13 @@
                 <td>${worker.name}</td>
                 <td>${worker.position}</td>
                 <td>${worker.workposition}</td>
-<%--                <sec:authorize access="hasRole('ADMIN')">--%>
+                <sec:authorize access="hasRole('ADMIN')">
 <%--                <td><p><a href="addWorkerInDepartment?idWorker=${worker.idWorker}">Добавить</a><p></td>--%>
                     <td><form action="addWorkerInDepartment?idWorker=${worker.idWorker}" method="post" accept-charset="utf-8">
                         <button class="btn btn-primary" type="submit">Add</button>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     </form></td>
-<%--                </sec:authorize>--%>
+                </sec:authorize>
             </tr>
         </c:forEach>
     </table>

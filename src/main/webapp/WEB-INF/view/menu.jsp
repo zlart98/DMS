@@ -47,6 +47,9 @@
                 </li>
             </sec:authorize>
         </ul>
+        <sec:authorize access="hasRole('ADMIN')">
+        <div class="navbar-text"><a class="nav-link" href="/user">User management</a></div>
+        </sec:authorize>
         <sec:authorize access="isAuthenticated()">
         <div class="navbar-text"><a class="nav-link" href="/logout">Logout</a></div>
         </sec:authorize>

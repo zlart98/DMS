@@ -45,10 +45,14 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(filter, CsrfFilter.class);
 
         http.authorizeRequests()
-                .antMatchers("/menu", "/registration").permitAll().anyRequest().authenticated().and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
-                .and().formLogin().loginPage("/login").permitAll();
+                .antMatchers("/department/*").hasRole("ADMIN")
+                .antMatchers("/department").hasRole("USER")
+                .antMatchers("/department/*").hasRole("ADMIN")
+                .antMatchers("/user/**").hasRole("ADMIN")
+                .antMatchers("/worker/*").hasRole("ADMIN")
+                .antMatchers("/worker").hasRole("USER")
+                .and().formLogin()
+                .and().formLogin().defaultSuccessUrl("/", false).and().logout();
 
     }
 
