@@ -16,13 +16,13 @@
 <sec:authorize access="hasRole('ADMIN')">
 <div>
 
-    <p class="font-weight-bold">Create department</p>
+    <p class="font-weight-bold">Создание раздела «Департамент»</p>
 
     <form class="form-inline" action="/department/saveOrUpdate" method="post" accept-charset="utf-8">
         <div class="form-group mx-sm-0.8 mb-2">
-            <p><input type="text" name="name" placeholder="Name" class="form-control"></p>
+            <p><input type="text" name="departmentName" placeholder="Название" class="form-control"></p>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-            <p><button type="submit" class="btn btn-primary mb-0.8">Create</button></p>
+            <p><button type="submit" class="btn btn-primary mb-0.8">Создать</button></p>
         </div>
     </form>
 
@@ -34,14 +34,14 @@
 </div>
 </sec:authorize>
 <div>
-    <p class="font-weight-bold" style="width: 200px;">Department list</p>
+    <p class="font-weight-bold" style="width: 200px;">Департаменты</p>
 </div>
 <div>
 <table class="table table-striped">
     <thead>
     <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Number</th>
+        <th scope="col">Название</th>
+        <th scope="col">Номер</th>
     </tr>
     </thead>
     <tbody>
@@ -52,23 +52,15 @@
             <sec:authorize access="hasRole('ADMIN')">
 <%--                <td><p><a href="/department/removeDepartment?idDepartment=${department.idDepartment}">Удаление отдела</a><p></td>--%>
                 <td><form action="/department/removeDepartment?idDepartment=${department.idDepartment}" method="post" accept-charset="utf-8">
-                    <button class="btn btn-primary" type="submit">Remove</button>
+                    <button class="btn btn-primary" type="submit">Удалить</button>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                 </form></td>
 
                 <td>
-                    <form class="form-inline" action="/department/saveOrUpdate?idDepartment=${department.idDepartment}"
-                          method="post" accept-charset="utf-8">
-                        <div class="form-row align-items-center">
-                            <div class="col-auto">
-                                <input type="text" name="name" placeholder="Name" class="form-control"/>
-                            </div>
-                            <div class="col-auto">
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"
-                            </div>
-                        </div>
+                    <form class="form-inline" action="/department/editDepartment/${department.idDepartment}"
+                          method="get" accept-charset="utf-8">
                         <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-0.8">Edit</button>
+                <button type="submit" class="btn btn-primary mb-0.8">Редактировать</button>
                         </div>
                 </form></td>
             </sec:authorize>

@@ -31,14 +31,14 @@ public class DepartmentController {
     }
 
     @PostMapping(value = "/saveOrUpdate")
-    public String saveOrUpdate(@RequestParam(value = "idDepartment", required = false) Long idDepartment,
-                               @RequestParam String name) throws InputFormanException {
+    public String saveOrUpdate(@RequestParam(required = false) Long idDepartment,
+                               @RequestParam String departmentName) throws InputFormanException {
 
         Department department = new Department();
-        if (name.matches("^-?\\d+$")) {
+        if (departmentName.matches("^-?\\d+$")) {
             throw new InputFormanException("Неверный ввод");
         }
-        department.setDepartmentName(name);
+        department.setDepartmentName(departmentName);
 
         if (idDepartment != null) {
             department.setIdDepartment(idDepartment);
@@ -80,14 +80,20 @@ public class DepartmentController {
     }
 
     @PostMapping("/enterTheDepartment/{departmentId}/addWorkerInDepartment")
-        public String addWorkerInDepartment(@PathVariable("departmentId") Long departmentId, @RequestParam("idWorker") Long idWorker, Model model){
-        Worker worker = new Worker();
+        public String addWorkerInDepartment(@PathVariable("departmentId") Long departmentId, @RequestParam("idWorker") Long idWorker){
+        Worker worker = workerService.findById(idWorker);
         worker.setDepartmentByIdDepartment(departmentService.findByIdWithDeps(departmentId));
-        worker.setIdWorker(idWorker);
+
 
         departmentService.addWorkerInDepartment(worker);
 
         return "redirect:/department/enterTheDepartment/" + departmentId + "/";
+    }
+
+    @GetMapping("/editDepartment/{idDepartment}")
+    public String editDepartment(@PathVariable("idDepartment") Department department, Model model){
+        model.addAttribute("editDepartment", department);
+        return "departmentEdit";
     }
 
 }

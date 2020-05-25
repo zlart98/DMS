@@ -12,7 +12,7 @@
 <body>
 <jsp:include page="menu.jsp"></jsp:include>
 
-<p class="font-weight-bold">Edit user ${userEdit.username}
+<p class="font-weight-bold">Редактирование записи ${userEdit.username}
 
 <form action="/user" method="post" accept-charset="utf-8">
     <br><p><input type="text" value="${userEdit.username}" name="username">
@@ -21,7 +21,7 @@
         </c:forEach>
         <input type="hidden" value="${userEdit.idUser}" name="userId">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-    <br><p><button type="submit" class="btn btn-primary mb-0.8">Save</button>
+    <br><p><button type="submit" class="btn btn-primary mb-0.8">Сохранить</button>
 
 </form>
 </body>

@@ -23,7 +23,7 @@
 <div>
     <sec:authorize access="hasRole('ADMIN')">
     <div>
-        <p><strong>Создание работника</strong></p>
+        <p><strong>Создание записи "Работник"</strong></p>
     </div>
     <form class="form-inline" action="/worker/saveOrUpdate" method="post" accept-charset="utf-8">
         <div class="form-row align-items-center">
@@ -42,7 +42,7 @@
         <input type="hidden" value="${_csrf.token}" name="_csrf">
         </div>
         <div class="col-auto">
-            <p><button type="submit" class="btn btn-primary">Create</button></p>
+            <p><button type="submit" class="btn btn-primary">Создать</button></p>
         </div>
     </form>
     </sec:authorize>
@@ -63,7 +63,7 @@
                 <td>${worker.departmentByIdDepartment.idDepartment}</td>
                 <sec:authorize access="hasRole('ADMIN')">
                     <td><form action="/worker/removeWorker?idWorker=${worker.idWorker}" method="post" accept-charset="utf-8">
-                        <button class="btn btn-primary" type="submit">Remove</button>
+                        <button class="btn btn-primary" type="submit">Удалить</button>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     </form></td>
 <%--                <td><p><a href="/worker/removeWorker?idWorker=${worker.idWorker}">Убрать</a><p></td>--%>
@@ -80,28 +80,9 @@
 <%--                    <button type="submit">Edit</button>--%>
 <%--                </form></td>--%>
 
-                <td><form class="form-inline" action="/worker/saveOrUpdate?idWorker=${worker.idWorker}" method="post" accept-charset="utf-8">
-                        <div class="form-row align-items-center">
-                            <div class="col-auto">
-                                <p><input type="text" name="name" placeholder="Имя" class="form-control" /></p>
-                            </div>
-                            <div class="col-auto">
-                                <p><input type="text" name="position" placeholder="Должность" class="form-control" /></p>
-                            </div>
-                            <div class="col-auto">
-                                <p><input type="text" name="workposition" placeholder="Рабочее место" class="form-control" /></p>
-                            </div>
-<%--                            <div>--%>
-<%--                            <select class="selectpicker form-control" name="idDepartment">--%>
-<%--                                <c:forEach var="department" items="${departmentList}">--%>
-<%--                                    <option>${department.idDepartment}</option>--%>
-<%--                                </c:forEach>--%>
-<%--                            </select>--%>
-<%--                            </div>--%>
-                            <input type="hidden" value="${_csrf.token}" name="_csrf">
-                        </div>
+                <td><form class="form-inline" action="/worker/editWorker/${worker.idWorker}" method="get" accept-charset="utf-8">
                         <div class="col-auto">
-                            <p><button type="submit" class="btn btn-primary">Edit</button></p>
+                            <p><button type="submit" class="btn btn-primary">Редактировать</button></p>
                         </div>
                     </form></td>
                 </sec:authorize>

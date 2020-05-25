@@ -9,10 +9,7 @@ import com.dms.demo.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,8 +41,9 @@ public class WorkerController {
                               @RequestParam(value = "idDepartment", required = false) Long idDepartment){
 
         if (name.matches("^-?\\d+$") || position.matches("^-?\\d+$")) {
-            throw new InputFormanException("Неверный ввод");
+            throw new InputFormanException("Invalid input");
         }
+
         Worker worker = new Worker();
         worker.setIdWorker(idWorker);
         worker.setName(name);
@@ -70,5 +68,11 @@ public class WorkerController {
             workerService.delete(worker);
         }
         return "redirect:/worker";
+    }
+
+    @GetMapping("/editWorker/{idWorker}")
+    public String editWorker(@PathVariable("idWorker") Worker worker, Model model){
+        model.addAttribute("editWorker", worker);
+        return "workerEdit";
     }
 }

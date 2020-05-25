@@ -12,7 +12,7 @@
 <jsp:include page="menu.jsp"></jsp:include>
 
 <div>
-    <p><strong>Workers in Department</strong></p> <div>
+    <p><strong>Список работников в департаменте</strong></p> <div>
     <input type="hidden" name="myhiddenvalue" value="<%= request.getParameter("idDepartment") %>" />
     <table class="table table-striped">
         <thead>
@@ -31,7 +31,7 @@
                 <sec:authorize access="hasRole('ADMIN')">
 <%--                    <td><p><a href="removeWorkerFromDepartment?idWorker=${worker.idWorker}">Удалить работника</a><p></td>--%>
                     <td><form action="removeWorkerFromDepartment?idWorker=${worker.idWorker}" method="post" accept-charset="utf-8">
-                        <button class="btn btn-primary" type="submit">Remove</button>
+                        <button class="btn btn-primary" type="submit">Удалить</button>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     </form></td>
                 </sec:authorize>
@@ -41,7 +41,7 @@
     </table>
 </div>
     <table class="table table-striped">
-        <p><strong>Workers Without Department</strong></p>
+        <p><strong>Рабочие без департамента</strong></p>
         <tr>
             <th scope="col">Имя</th>
             <th scope="col">Должность</th>
@@ -55,7 +55,7 @@
                 <sec:authorize access="hasRole('ADMIN')">
 <%--                <td><p><a href="addWorkerInDepartment?idWorker=${worker.idWorker}">Добавить</a><p></td>--%>
                     <td><form action="addWorkerInDepartment?idWorker=${worker.idWorker}" method="post" accept-charset="utf-8">
-                        <button class="btn btn-primary" type="submit">Add</button>
+                        <button class="btn btn-primary" type="submit">Добавить</button>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     </form></td>
                 </sec:authorize>

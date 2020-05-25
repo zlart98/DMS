@@ -11,10 +11,10 @@ Add new User
 <span style="color:red"><p><strong>${message}</strong></p></span>
 
 <form action="/registration" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><label> Имя : <input type="text" name="username"/> </label></div>
+    <div><label> Пароль: <input type="password" name="password"/> </label></div>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-    <div><input type="submit" value="Sign In"/></div>
+    <div><input type="submit" value="Войти"/></div>
 </form>
 </body>
 </html>

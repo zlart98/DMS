@@ -12,14 +12,14 @@
 <body>
 <jsp:include page="menu.jsp"></jsp:include>
 <div>
-    <p class="font-weight-bold">list Users</p>
+    <p class="font-weight-bold">Список пользователей</p>
 </div>
 
 <table class="table table-striped">
     <thead>
     <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Role</th>
+        <th scope="col">Имя</th>
+        <th scope="col">Роль</th>
         <th></th>
     </tr>
     </thead>
@@ -31,7 +31,7 @@
             <td><c:forEach items="${users.roles}" var="roles">
                 <c:out value="${roles}"/>
             </c:forEach></td>
-            <td><p><a href="/user/${users.idUser}">edit</a><p></td>
+            <td><p><a href="/user/${users.idUser}">Редактировать</a><p></td>
 
         </tr>
     </c:forEach>
