@@ -27,6 +27,7 @@ public class DepartmentController {
     public String department(Model model) {
         List<Department> departments = departmentService.findAll();
         model.addAttribute("departmentList", departments);
+        System.out.println("aaaaa");
         return "department";
     }
 
