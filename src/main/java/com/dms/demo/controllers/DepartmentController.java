@@ -6,7 +6,6 @@ import com.dms.demo.exception.InputFormanException;
 import com.dms.demo.service.DepartmentService;
 import com.dms.demo.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +26,6 @@ public class DepartmentController {
     public String department(Model model) {
         List<Department> departments = departmentService.findAll();
         model.addAttribute("departmentList", departments);
-        System.out.println("aaaaa");
         return "department";
     }
 
