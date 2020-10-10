@@ -49,6 +49,7 @@ public class RegistrationController {
         user.setRoles(Collections.singleton(Role.ROLE_ADMIN));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepo.save(user);
+
         return "redirect:/login";
     }
 }
