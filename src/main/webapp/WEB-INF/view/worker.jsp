@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<jsp:include page="menu.jsp"></jsp:include>
+<jsp:include page="menuIsLogin.jsp"></jsp:include>
 
 <span style="color:red"><p><strong>${inputFormatException}</strong></p></span>
 

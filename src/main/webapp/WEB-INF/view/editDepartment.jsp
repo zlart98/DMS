@@ -9,7 +9,7 @@
     <title>department</title>
 </head>
 <body>
-<jsp:include page="menu.jsp"></jsp:include>
+<jsp:include page="menuIsLogin.jsp"></jsp:include>
 
 <div>
     <p><strong>Список работников в департаменте</strong></p> <div>

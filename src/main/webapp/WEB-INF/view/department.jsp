@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<jsp:include page="menu.jsp"></jsp:include>
+<jsp:include page="menuIsLogin.jsp"></jsp:include>
 
 <span style="color:red"><p><strong>${inputFormatException}</strong></p></span>
 <sec:authorize access="hasRole('ADMIN')">
@@ -47,7 +47,7 @@
     <tbody>
     <c:forEach var="department" items="${departmentList}">
         <tr>
-            <td><p><a href="/department/enterTheDepartment/${department.idDepartment}/">${department.departmentName}</a><p></td>
+            <td><p><a href="/department/enterTheDepartment/${department.idDepartment}/department.jsp">${department.departmentName}</a><p></td>
             <td><p><c:out value="${department.idDepartment}"></c:out><p></td>
             <sec:authorize access="hasRole('ADMIN')">
 <%--                <td><p><a href="/department/removeDepartment?idDepartment=${department.idDepartment}">Удаление отдела</a><p></td>--%>

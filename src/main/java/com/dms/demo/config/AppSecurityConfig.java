@@ -1,13 +1,16 @@
 package com.dms.demo.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -21,6 +24,11 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
 //    @Autowired
 //    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.inMemoryAuthentication().withUser("user").password("{noop}user").roles("USER");
@@ -32,7 +40,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
-                .passwordEncoder(NoOpPasswordEncoder.getInstance())
+                .passwordEncoder(passwordEncoder())
                 .usersByUsernameQuery("select username, password, active from user where username = ?")
                 .authoritiesByUsernameQuery("select u.username, ur.roles from user u inner join user_roles ur on u.id_user = ur.user_id where username = ?");
     }
@@ -46,11 +54,11 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/department/*").hasRole("ADMIN")
-                .antMatchers("/department").hasRole("USER")
+                .antMatchers("/department").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/department/*").hasRole("ADMIN")
                 .antMatchers("/user/**").hasRole("ADMIN")
                 .antMatchers("/worker/*").hasRole("ADMIN")
-                .antMatchers("/worker").hasRole("USER")
+                .antMatchers("/worker").hasAnyRole("USER", "ADMIN")
                 .and().formLogin()
                 .and().formLogin().defaultSuccessUrl("/", false).and().logout();
 

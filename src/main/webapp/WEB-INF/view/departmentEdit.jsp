@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<jsp:include page="menu.jsp"></jsp:include>
+<jsp:include page="menuIsLogin.jsp"></jsp:include>
 
 <p class="font-weight-bold">Редактирование раздела ${editDepartment.departmentName}
 

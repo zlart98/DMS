@@ -49,19 +49,13 @@
             </sec:authorize>
         </ul>
         <sec:authorize access="hasRole('ADMIN')">
-        <div class="navbar-text"><a class="nav-link" href="/user">Упраление учетными записями</a></div>
+            <div class="navbar-text"><a class="nav-link" href="/user">Упраление учетными записями</a></div>
         </sec:authorize>
         <sec:authorize access="isAuthenticated()">
-        <div class="navbar-text"><a class="nav-link" href="/logout">Выход</a></div>
+            <div class="navbar-text"><a class="nav-link" href="/logout">Выход</a></div>
         </sec:authorize>
     </div>
 </nav>
-
-<div>
-    <<h3 align="center">Дабро пожаловать</h3>
-    <h3 align="center">Чтобы начать работу-<a href="/registration">зарегистрируйтесь</a>
-    </h3>
-<div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
