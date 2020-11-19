@@ -40,8 +40,9 @@
                     </div>
                     <div class="col-auto">
                         <select class="dropdown-item" name="Role">
-                            <option value="ADMIN">ADMIN</option>
-                            <option value="USER">USER</option>
+                            <option value="ADMIN">Дежурный администратор АС</option>
+                            <option value="USER">Сотрудник АС</option>
+                            <option value="SECURITY_OFFICER">Офицер безопасности</option>
                         </select>
                     </div>
                     <div class="col-auto">

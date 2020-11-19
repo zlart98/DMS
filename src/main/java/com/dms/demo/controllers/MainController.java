@@ -17,7 +17,7 @@ public class MainController {
 
     @GetMapping
     public String getMain(){
-        List<User> allByRoles = userRepo.findAllByRoles(Role.ROLE_ADMIN);
+        List<User> allByRoles = userRepo.findAllByRoles(Role.ROLE_SECURITY_OFFICER);
         if (!allByRoles.isEmpty()){
             return "menuIsLogin";
         }

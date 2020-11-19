@@ -27,7 +27,7 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
     @GetMapping
-    @Secured(value = "ROLE_ADMIN")
+    @Secured(value = "ROLE_SECURITY_OFFICER")
     public String userList(Principal principal, Model model) {
         List<User> users = userRepo.findAllByUsernameIsNot(principal.getName());
         model.addAttribute("userList", users);
@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @GetMapping("/{idUser}")
-    @Secured(value = "ROLE_ADMIN")
+    @Secured(value = "ROLE_SECURITY_OFFICER")
     public String userEdit(@PathVariable("idUser") User user, Model model) {
         model.addAttribute("userEdit", user);
         model.addAttribute("roles", Role.values());
@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @GetMapping("/remove/{idUser}")
-    @Secured(value = "ROLE_ADMIN")
+    @Secured(value = "ROLE_SECURITY_OFFICER")
     public String removeUser(@PathVariable("idUser") Long userId) {
         User user = userRepo.findByIdUser(userId).orElseThrow(EntityNotFoundException::new);
         userRepo.delete(user);
@@ -51,7 +51,7 @@ public class UserController {
     }
 
     @PostMapping()
-    @Secured(value = "ROLE_ADMIN")
+    @Secured(value = "ROLE_SECURITY_OFFICER")
     public String userSave(Principal principal,
                            @RequestParam String username,
                            @RequestParam("userId") Long userId,
@@ -80,14 +80,14 @@ public class UserController {
 
         Set<Role> roles = user.getRoles();
         roles.clear();
-        roles.add(Role.valueOf(role));
+        roles.add(Role.valueOf("ROLE_" + role));
         user.setRoles(roles);
         userRepo.saveAndFlush(user);
         return "redirect:/user";
     }
 
     @PostMapping("/newUser")
-    @Secured(value = "ROLE_ADMIN")
+    @Secured(value = "ROLE_SECURITY_OFFICER")
     public String addUser(User user, @ModelAttribute(name = "Role") String role) {
         Optional<User> userFromDB = userRepo.findByUsername(user.getUsername());
         String username = user.getUsername();

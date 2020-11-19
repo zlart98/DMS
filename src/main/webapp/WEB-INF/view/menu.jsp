@@ -36,29 +36,31 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            <sec:authorize access="hasAnyRole('ADMIN','USER')">
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/department">Департаменты</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/worker">Работники</a>
             </li>
+            </sec:authorize>
             <sec:authorize access="isAuthenticated()">
                 <li class="nav-item">
                     <a class="nav-link"><span style="color:limegreen">[ <sec:authentication property="name"/> ]</span></a>
                 </li>
             </sec:authorize>
         </ul>
-        <sec:authorize access="hasRole('ADMIN')">
+        <sec:authorize access="hasRole('ROLE_SECURITY_OFFICER')">
         <div class="navbar-text"><a class="nav-link" href="/user">Упраление учетными записями</a></div>
         </sec:authorize>
         <sec:authorize access="isAuthenticated()">
-        <div class="navbar-text"><a class="nav-link" href="/logout">Выход</a></div>
+        <div class="navbar-text"><a href="<c:url value="/logout" />">Выход</a></div>
         </sec:authorize>
     </div>
 </nav>
 
 <div>
-    <<h3 align="center">Дабро пожаловать</h3>
+    <<h3 align="center">Дабро пожаловать!</h3>
     <h3 align="center">Чтобы начать работу-<a href="/registration">зарегистрируйтесь</a>
     </h3>
 <div>

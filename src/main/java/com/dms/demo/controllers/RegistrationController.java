@@ -35,7 +35,7 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(User user, Map<String, Object> model) throws AccessDeniedException {
-        List<User> allByRoles = userRepo.findAllByRoles(Role.ROLE_ADMIN);
+        List<User> allByRoles = userRepo.findAllByRoles(Role.ROLE_SECURITY_OFFICER);
         if (!allByRoles.isEmpty()){
             throw new AccessDeniedException("You cannot to do this operation");
         }
@@ -46,7 +46,7 @@ public class RegistrationController {
             return "registration";
         }
         user.setActive(true);
-        user.setRoles(Collections.singleton(Role.ROLE_ADMIN));
+        user.setRoles(Collections.singleton(Role.ROLE_SECURITY_OFFICER));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepo.save(user);
 

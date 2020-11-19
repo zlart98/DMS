@@ -46,7 +46,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(final HttpSecurity http) throws Exception {
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
@@ -55,12 +55,18 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/department/*").hasRole("ADMIN")
                 .antMatchers("/department").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/department/*").hasRole("ADMIN")
-                .antMatchers("/user/**").hasRole("ADMIN")
+                .antMatchers("/user/**").hasRole("SECURITY_OFFICER")
+                .antMatchers("/user/").hasRole("SECURITY_OFFICER")
                 .antMatchers("/worker/*").hasRole("ADMIN")
                 .antMatchers("/worker").hasAnyRole("USER", "ADMIN")
-                .and().formLogin().loginPage("/login")
-                .and().formLogin().defaultSuccessUrl("/", false).and().logout();
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/")
+                .and()
+                .formLogin().loginPage("/login")
+                .defaultSuccessUrl("/", false);
 
     }
 

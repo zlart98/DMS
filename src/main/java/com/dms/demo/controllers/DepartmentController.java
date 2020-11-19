@@ -65,12 +65,13 @@ public class DepartmentController {
 
         List<Worker> workersWithoutDepartment = departmentService.getWorkerWithoutDepartment();
         model.addAttribute("workersWithoutDepartment", workersWithoutDepartment);
+        model.addAttribute("department", department);
 
         return "editDepartment";
     }
 
     @PostMapping("/enterTheDepartment/{departmentId}/removeWorkerFromDepartment")
-        public String removeWorkerFromDepartment(@PathVariable("departmentId") Long departmentId, @RequestParam("idWorker") Long idWorker, Model model){
+        public String removeWorkerFromDepartment(@PathVariable("departmentId") Long departmentId, @RequestParam("idWorker") Long idWorker){
         Worker worker = workerService.findByIdWithWork(idWorker);
 
         departmentService.removeWorkerFromDepartment(worker);
